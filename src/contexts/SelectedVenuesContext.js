@@ -15,6 +15,8 @@ export const VenuesProvider = ({ children }) => {
   const [year, setYear] = useState("");
   const [note, setNote] = useState("");
 
+  const handleErrorChange = (b) => setHasError(b)
+
   // handle date input
   function handleDayChange(event) {
     setDay(event.target.value);
@@ -35,16 +37,7 @@ export const VenuesProvider = ({ children }) => {
     setVenueAvailability(event.target.value);
   };
 
-  useEffect(() => {
-    // window.addEventListener("wheel", tryNavigation, { passive: false });
-    return () => {
-      // window.removeEventListener("wheel", tryNavigation, { passive: false });
-    };
-  }, []);
-
-  // function tryNavigation(event) {
-  //   event.preventDefault();
-
+  // const tryNavigation = useCallback((event) => {
   //   const scrollPosition = window.scrollY;
   //   const windowHeight = window.innerHeight;
   //   const maxScrollPosition = document.body.scrollHeight - windowHeight;
@@ -54,34 +47,51 @@ export const VenuesProvider = ({ children }) => {
   //       ? Math.min(maxScrollPosition - scrollPosition, windowHeight)
   //       : Math.max(-scrollPosition, -windowHeight);
 
-  //   if (scrollAmount !== 0) {
-  //     event.stopPropagation();
-  //     event.stopImmediatePropagation();
-
-  //     if (question === "__select_venue__" && scrollAmount > 0) {
-  //       console.log(question, "question");
-  //       // check that venue has been selected before going forward
-  //       if (selectedVenues.length < 2) {
-  //         setHasError(true);
-  //         return false;
-  //       }
-  //     } else if (question && scrollAmount > 0) {
-  //       if (!venueRating[section][question]) {
-  //         setHasError(true);
-  //         return false;
-  //       }
+  //   if (question === "__select_venue__" && scrollAmount > 0) {
+  //     event.preventDefault()
+  //     console.log(question, "question");
+  //     // check that venue has been selected before going forward
+  //     if (selectedVenues.length < 2) {
+  //       setHasError(true);
+  //       return false;
   //     }
-
-  //     const scrollTarget =
-  //       scrollPosition + (scrollAmount > 0 ? windowHeight : -windowHeight);
-  //     const scrollOptions = {
-  //       top: scrollTarget,
-  //       behavior: "smooth",
-  //     };
-  //     window.scrollTo(scrollOptions);
+  //   } else if (question && scrollAmount > 0) {
+  //     event.preventDefault()
+  //     if (!venueRating[section][question]) {
+  //       setHasError(true);
+  //       return false;
+  //     }
   //   }
-  //   return false;
-  // }
+
+  //   return true;
+
+  // }, [question, section, selectedVenues.length, venueRating])
+
+  useEffect(() => {
+
+    // window.addEventListener("wheel", tryNavigation, { passive: false });
+    // return () => {
+    //   window.removeEventListener("wheel", tryNavigation, { passive: false });
+    // };
+  }, []);
+
+  // useEffect(() => {
+  //   const handle = (e) => {
+  //     console.log(question)
+  //     if (selectedVenues.length < 2 && question === "__select_venue__") {
+  //       e.preventDefault();
+  //       e.stopPropagation();
+  //     }
+  //   };
+  //   document.addEventListener("scroll", handle);
+
+  //   return () => {
+  //     document.removeEventListener("scroll", handle);
+  //   };
+  // }, [question, selectedVenues.length]);
+
+
+
 
   const scrollDown = () => {
     if (question === "__select_venue__") {

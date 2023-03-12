@@ -21,7 +21,7 @@ export function Instructions({ title, subtitle, text, imageUrl, id }) {
     <section
       id={id}
       ref={ref}
-      className="h-screen w-screen flex items-center justify-center "
+      className="h-screen w-screen flex items-center justify-center snap-center"
     >
       <div className="w-1/2 p-16 h-1/2 flex flex-col justify-between">
         <h2 className="text-5xl mb-5 font-normal ">{title}</h2>

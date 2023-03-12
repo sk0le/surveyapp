@@ -27,19 +27,44 @@ export function Question({
   const { ref, inView: myElementIsVisible } = useInView({
     threshold: 0.2,
   });
-  const { setQuestion } = useVenue();
+  const { selectedVenues, setHasError } = useVenue();
 
   useEffect(() => {
-    if (myElementIsVisible) {
-      setQuestion(id);
-    }
-  }, [myElementIsVisible, id, setQuestion]);
+    const handle = (e) => {
+      console.log(myElementIsVisible, selectedVenues.length);
+      if (selectedVenues.length < 2 && myElementIsVisible) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // ref.current.scrollIntoView({
+        //   behavior: "smooth",
+        //   block: "center",
+        //   inline: "start",
+        // });
+
+        document.body.style.overflow = "hidden";
+        setHasError(true);
+      }
+    };
+    window.addEventListener("scroll", handle);
+
+    return () => {
+      window.removeEventListener("scroll", handle);
+    };
+  }, [selectedVenues.length, myElementIsVisible, setHasError, ref]);
+
+  // useEffect(() => {
+  //   console.log(id);
+  //   if (myElementIsVisible) {
+  //     setQuestion(id);
+  //   }
+  // }, [myElementIsVisible, id, setQuestion]);
 
   return (
     <section
       ref={ref}
       id={id}
-      className="h-screen w-screen flex items-center justify-center relative"
+      className="h-screen w-screen flex items-center justify-center relative snap-center"
     >
       <div className="w-1/2 p-24 h-auto flex flex-col justify-between">
         <p className=" text-5xl font-normal  mb-6">{title}</p>

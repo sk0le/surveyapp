@@ -34,6 +34,7 @@ export function useVenue() {
     }
 
     if (newArr.length > 1 && hasError) {
+      document.body.style.overflow = "scroll";
       setHasError(false);
     }
 
@@ -69,6 +70,7 @@ export function useVenue() {
     handleOptionChange,
     handleDayChange,
     handleMonthChange,
+    setHasError,
     handleYearChange,
     day,
     month,

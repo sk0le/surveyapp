@@ -13,13 +13,13 @@ export function VenueRating() {
   const { selectedVenues, venueRating, setPlaceRating } = useVenue();
 
   return (
-    <div className="h-auto relative">
+    <div className="h-auto relative snap-center">
       {selectedVenues.map((item) => {
         const venue = STEP_2_QUESTIONS[item].instructions;
         const controlInstructions = STEP_2_QUESTIONS.controlsIntructions;
 
         return (
-          <section key={item} className="relative">
+          <section key={item} className="relative snap-center">
             <Instructions
               id={item}
               title={venue.title}

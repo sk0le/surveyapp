@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Question } from "../../../components/question/Question";
 import { useVenue } from "../../../hooks/useVenue";
 import { STEP_1_QUESTION } from "../../../data/Screens";
 
 export function VenueSelection() {
-  const { selectedVenues, toggleSelectedVenue, hasError } = useVenue();
+  const { selectedVenues, toggleSelectedVenue, hasError, question } =
+    useVenue();
 
   return (
     <Question

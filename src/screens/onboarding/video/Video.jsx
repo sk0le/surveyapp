@@ -4,7 +4,7 @@ import { Submit } from "../../../components/buttons/Submit";
 export function VideoIntroduction({ title, videoUrl }) {
   return (
     <section
-      className={`h-screen w-screen flex items-center flex-col justify-center`}
+      className={` h-screen w-screen flex items-center flex-col justify-center snap-center`}
     >
       <div className="w-1/2">
         <h1 className="text-7xl font-normal mb-8 ">{title}</h1>
